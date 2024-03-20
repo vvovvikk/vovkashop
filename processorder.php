@@ -8,11 +8,21 @@
 </head>
 
 <body>
+    <?php
+    //Создать короткие имена переменых
+    $tireqty = $_POST['tireqty'];
+    $oilqty = $_POST['oilqty'];
+    $sparkqty = $_POST['sparkqty'];
+    ?>
     <h1>Автозапчасти от Вовки</h1>
     <h2>Результаты заказа</h2>
 
     <?php
-    echo "<p>Заказ обработан в ".date('H:i, jS F Y')."</p>";
+    echo "<p>Заказ обработан в " . date('H:i, jS F Y') . "</p>";
+    echo "<p>Ваш заказ: </p>";
+    echo htmlspecialchars($tireqty).' шин<br />';
+    echo htmlspecialchars($oilqty).' бутылок масла<br />';
+    echo htmlspecialchars($sparkqty).' свечей зажигания<br />';
     ?>
 </body>
 
