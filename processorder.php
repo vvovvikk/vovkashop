@@ -65,6 +65,18 @@
         $totalamount = $totalamount * (1 + $taxrate);
         echo "Всего, включая налог с продаж: $" . number_format($totalamount, 2) . "</p>";
     }
+    $outputstring = $date . '\t' . $tireqty . ' шин\t' . $oilqty . ' масла\t' . $sparkqty . ' свечей зажигания\t' . $totalamount . '\t' . $address . '\n';
+    $fp = @fopen("orders.txt", 'ab');
+    if (!$fp) {
+        echo '<p><strong>В настоящий момент Ваш запрос не может быть обработан. Пожалуйста, попробуйте позже.</strong></p>';
+        exit;
+    };
+    flock($fp, LOCK_EX);
+    fwrite($fp, $outputstring, strlen($outputstring));
+    flock($fp, LOCK_UN);
+    fclose($fp);
+    echo '<p>Ваш заказ записан</p>'
+
 
     ?>
 </body>
